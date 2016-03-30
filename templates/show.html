@@ -1,0 +1,20 @@
+<?php require_once('header.php') ?>
+<?php if ($chore): ?>
+
+
+<ul class="collection with-header">
+  <li class="collection-header row" style="margin:0">
+    <h4 class="col s9"><?= $chore['chore_name'] ?></h4>
+    <!--
+    <a style="margin:10px" class="col s1 cyan darken-2 waves-effect waves-light btn-large" href=""><i class="material-icons">edit</i></a>
+    <a style="margin:10px" class="col s1 red darken-2 waves-effect waves-light btn-large" href=""><i class="material-icons">delete</i></a>
+    -->
+  </li>
+  <li class="collection-item"><strong>Assigned to: </strong><?= $chore['first_name']?> <?=$chore['last_name'] ?></li>
+  <li class="collection-item"><strong>Date: </strong><?= date('M jS, Y', strtotime($chore['date'])) ?></li>
+  <li class="collection-item"><strong>Color: </strong>Teal</li>
+</ul>
+
+<?php endif ?>
+
+<?php require_once('footer.php') ?>

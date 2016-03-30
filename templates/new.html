@@ -1,0 +1,43 @@
+<?php require_once('header.php'); ?>
+
+<script>
+  $(document).ready(function() {
+    // DropDown Menu
+    $('select').material_select();
+
+    // For Date Picker
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+  });
+
+</script>
+
+<div class="card grey lighten-2">
+  <div class="card-content black-text">
+    <form method="post" action="/slim_api/index.php/chores">
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="chore_name" id="chore" type="text" class="validate">
+          <label for="chore">Chore</label>
+        </div>
+        <div class="input-field col s12">
+          <select name="user_id">
+            <option name="user_id" value="">Assign no user</option>
+            <?php foreach($users as $user): ?>
+            <option name="user_id" value="<?= $user['id'] ?>"><?= $user['first_name'] ?> <?= $user['last_name'] ?></option>
+            <?php endforeach ?>
+          </select>
+          <label>Assign user to chore</label>
+        </div>
+        <div class="input-field col s12">
+          <input name="date" type="date" class="datepicker">
+        </div>
+        <button class="waves-effect waves-light btn">Add</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<?php require_once('footer.php'); ?>

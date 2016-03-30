@@ -1,0 +1,31 @@
+<?php require_once('header.php') ?>
+<?php require_once('DB.php') ?>
+
+<script>
+$(document).ready(function() {
+  $('#calendar').fullCalendar({
+    eventSources: [
+      {
+        events: [ // put the array in the `events` property
+          <?php foreach($chores as $chore): ?>
+          {
+            title  : '<?= $chore["chore_name"] ?>',
+            start  : '<?= $chore["date"] ?>',
+            allDay : true,
+            url    : '/slim_api/index.php/chores/<?= $chore["id"] ?>',
+          },
+          <?php endforeach ?>
+        ],
+        color: '#0097a7',     // an option!
+        textColor: 'white' // an option!
+    }
+  ],
+
+  });
+});
+</script>
+
+<a class="red darken-2 waves-effect waves-light btn" href="/slim_api/index.php/chores/new"><i class="material-icons right">add</i>New chore</a>
+<div style="margin:50px 0" id='calendar'></div>
+
+<?php require_once('footer.php') ?>
